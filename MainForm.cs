@@ -10,7 +10,7 @@ namespace Wizard101DamageCalculator
     {
         private Dictionary<string, Spell> SpellNamePair = new();
 
-        private Spell[] spells;
+        private Spell[]? spells;
 
         private double PercentBoost;
         private int PlusBoost;
@@ -44,6 +44,8 @@ namespace Wizard101DamageCalculator
 
         private void TextboxChooseSpell_KeyDown(object sender, KeyEventArgs e)
         {
+            string simpleSpell = "";
+
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
             {
                 if (!string.IsNullOrEmpty(TextBoxChooseSpell.Text))
@@ -55,7 +57,7 @@ namespace Wizard101DamageCalculator
                             if (keyValuePair.Key == TextBoxChooseSpell.Text)
                             {
                                 School school = Spell.GetCurrentSpellSchool(keyValuePair.Value);
-                                string simpleSpell = keyValuePair.Key.Replace(" ", "");
+                                simpleSpell = keyValuePair.Key.Replace(" ", "");
 
                                 ResourceSet? resourceSet = Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentCulture, true, true);
 
@@ -76,6 +78,25 @@ namespace Wizard101DamageCalculator
                         enchantmentWindow.ShowDialog();
 
                         Show();
+
+                        bool strongApplied = enchantmentWindow.StrongApplied;
+
+                        if (strongApplied)
+                        {
+                            simpleSpell += "Strong";
+
+                            PictureSpell.Image = null;
+
+                            ResourceSet? resourceSet = Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentCulture, true, true);
+
+                            foreach (DictionaryEntry resource in resourceSet)
+                            {
+                                if (simpleSpell == resource.Key.ToString())
+                                {
+                                    PictureSpell.Image = (Image?)resource.Value;
+                                }
+                            }
+                        }
                     }
                     else
                     {
