@@ -70,13 +70,14 @@
             this.PictureSpell.Size = new System.Drawing.Size(127, 195);
             this.PictureSpell.TabIndex = 2;
             this.PictureSpell.TabStop = false;
+            this.PictureSpell.Click += new System.EventHandler(this.PictureSpell_Click);
             // 
             // LabelInfo1
             // 
             this.LabelInfo1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LabelInfo1.AutoSize = true;
-            this.LabelInfo1.Location = new System.Drawing.Point(477, 9);
+            this.LabelInfo1.Location = new System.Drawing.Point(480, 47);
             this.LabelInfo1.Name = "LabelInfo1";
             this.LabelInfo1.Size = new System.Drawing.Size(250, 25);
             this.LabelInfo1.TabIndex = 3;
@@ -87,7 +88,7 @@
             this.LabelInfo3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LabelInfo3.AutoSize = true;
-            this.LabelInfo3.Location = new System.Drawing.Point(471, 47);
+            this.LabelInfo3.Location = new System.Drawing.Point(474, 9);
             this.LabelInfo3.Name = "LabelInfo3";
             this.LabelInfo3.Size = new System.Drawing.Size(256, 25);
             this.LabelInfo3.TabIndex = 4;
@@ -97,20 +98,22 @@
             // 
             this.TextBoxBoostPlus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBoxBoostPlus.Location = new System.Drawing.Point(733, 6);
+            this.TextBoxBoostPlus.Location = new System.Drawing.Point(736, 44);
             this.TextBoxBoostPlus.Name = "TextBoxBoostPlus";
             this.TextBoxBoostPlus.Size = new System.Drawing.Size(52, 32);
-            this.TextBoxBoostPlus.TabIndex = 1;
+            this.TextBoxBoostPlus.TabIndex = 2;
+            this.TextBoxBoostPlus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TextBoxBoostPlus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxBoostPlus_KeyDown);
             // 
             // TextBoxBoostPercent
             // 
             this.TextBoxBoostPercent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBoxBoostPercent.Location = new System.Drawing.Point(733, 44);
+            this.TextBoxBoostPercent.Location = new System.Drawing.Point(736, 6);
             this.TextBoxBoostPercent.Name = "TextBoxBoostPercent";
             this.TextBoxBoostPercent.Size = new System.Drawing.Size(52, 32);
-            this.TextBoxBoostPercent.TabIndex = 2;
+            this.TextBoxBoostPercent.TabIndex = 1;
+            this.TextBoxBoostPercent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TextBoxBoostPercent.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxBoostPercent_KeyDown);
             // 
             // MainForm

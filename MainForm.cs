@@ -10,6 +10,9 @@ namespace Wizard101DamageCalculator
     {
         private readonly Dictionary<string, Spell> spellNamePair = new();
 
+        private double PercentBoost;
+        private int PlusBoost;
+
         public MainForm()
         {
             InitializeComponent();
@@ -55,7 +58,7 @@ namespace Wizard101DamageCalculator
                             {
                                 PictureSpell.Image = (Image?)resource.Value;
                             }
-                            else
+                            /*else
                             {
                                 #region Debug Purposes Only
                                 MessageBoxButtons buttons = MessageBoxButtons.OK;
@@ -67,21 +70,42 @@ namespace Wizard101DamageCalculator
                                     break;
                                 }
                                 #endregion
-                            }
+                            }*/
                         }
                     }
                 }
             }
         }
 
-        private void TextBoxBoostPlus_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
         private void TextBoxBoostPercent_KeyDown(object sender, KeyEventArgs e)
         {
-            
+            if (e.KeyCode == Keys.Enter)
+            {
+                string text = TextBoxBoostPercent.Text;
+
+                text = "0." + text;
+
+                PercentBoost = double.Parse(text);
+
+                TextBoxBoostPlus.Focus();
+            }
+        }
+
+        private void TextBoxBoostPlus_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string text = TextBoxBoostPlus.Text;
+
+                PlusBoost = int.Parse(text);
+
+                TextBoxChooseSpell.Focus();
+            }
+        }
+
+        private void PictureSpell_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
