@@ -8,6 +8,8 @@ namespace Wizard101DamageCalculator.Windows
 {
     public partial class EnchantmentWindow : Form
     {
+        public bool StrongApplied { get; set; }
+
         private readonly Dictionary<string, Spell> SpellNamePair = new();
 
         private Spell? currentSpell;
@@ -61,6 +63,8 @@ namespace Wizard101DamageCalculator.Windows
 
         private void PictureStrong_Click(object sender, EventArgs e)
         {
+            StrongApplied = true;
+
             Close();
         }
 
