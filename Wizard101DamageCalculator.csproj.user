@@ -4,5 +4,8 @@
     <Compile Update="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Windows\EnchantmentWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
