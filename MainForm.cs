@@ -31,9 +31,9 @@ namespace Wizard101DamageCalculator
                 source.Add(spell.SpellName);
             }
 
-            TextboxChooseSpell.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            TextboxChooseSpell.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            TextboxChooseSpell.AutoCompleteCustomSource = source;
+            TextBoxChooseSpell.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            TextBoxChooseSpell.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            TextBoxChooseSpell.AutoCompleteCustomSource = source;
         }
 
         private void TextboxChooseSpell_KeyDown(object sender, KeyEventArgs e)
@@ -42,7 +42,7 @@ namespace Wizard101DamageCalculator
             {
                 foreach (KeyValuePair<string, Spell> keyValuePair in spellNamePair)
                 {
-                    if (keyValuePair.Key == TextboxChooseSpell.Text)
+                    if (keyValuePair.Key == TextBoxChooseSpell.Text)
                     {
                         School school = Spell.GetCurrentSpellSchool(keyValuePair.Value);
                         string simpleSpell = keyValuePair.Key.Replace(" ", "");
@@ -72,6 +72,16 @@ namespace Wizard101DamageCalculator
                     }
                 }
             }
+        }
+
+        private void TextBoxBoostPlus_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void TextBoxBoostPercent_KeyDown(object sender, KeyEventArgs e)
+        {
+            
         }
     }
 }
