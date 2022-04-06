@@ -63,6 +63,26 @@ namespace Wizard101DamageCalculator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Colossal {
+            get {
+                object obj = ResourceManager.GetObject("Colossal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Epic {
+            get {
+                object obj = ResourceManager.GetObject("Epic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FireCat {
             get {
                 object obj = ResourceManager.GetObject("FireCat", resourceCulture);
@@ -76,6 +96,46 @@ namespace Wizard101DamageCalculator.Properties {
         internal static System.Drawing.Bitmap FireCatItemCard {
             get {
                 object obj = ResourceManager.GetObject("FireCatItemCard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Gargantuan {
+            get {
+                object obj = ResourceManager.GetObject("Gargantuan", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Giant {
+            get {
+                object obj = ResourceManager.GetObject("Giant", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Monstrous {
+            get {
+                object obj = ResourceManager.GetObject("Monstrous", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Strong {
+            get {
+                object obj = ResourceManager.GetObject("Strong", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
