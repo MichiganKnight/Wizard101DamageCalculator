@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Globalization;
 using System.Resources;
-
 using Wizard101DamageCalculator.Properties;
+using Wizard101DamageCalculator.Windows;
 
 namespace Wizard101DamageCalculator
 {
     public partial class MainForm : Form
     {
-        private readonly Dictionary<string, Spell> spellNamePair = new();
+        private Dictionary<string, Spell> SpellNamePair = new();
+
+        private Spell[] spells;
 
         private double PercentBoost;
         private int PlusBoost;
@@ -20,16 +22,17 @@ namespace Wizard101DamageCalculator
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            spellNamePair.Clear();
+            SpellNamePair = new Dictionary<string, Spell>();
+
+            SpellNamePair.Clear();
 
             AutoCompleteStringCollection source = new();
 
-            Spell[] spells = Spell.GetAllSpells();
-            string[] spellNames = Spell.GetAllSpellNames(spells);
+            spells = Spell.GetAllSpells();
 
             foreach (Spell spell in spells)
             {
-                spellNamePair.Add(spell.SpellName, spell);
+                SpellNamePair.Add(spell.SpellName, spell);
 
                 source.Add(spell.SpellName);
             }
@@ -41,51 +44,92 @@ namespace Wizard101DamageCalculator
 
         private void TextboxChooseSpell_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
             {
-                foreach (KeyValuePair<string, Spell> keyValuePair in spellNamePair)
+                if (!string.IsNullOrEmpty(TextBoxChooseSpell.Text))
                 {
-                    if (keyValuePair.Key == TextBoxChooseSpell.Text)
+                    if (IsValid(TextBoxChooseSpell.Text))
                     {
-                        School school = Spell.GetCurrentSpellSchool(keyValuePair.Value);
-                        string simpleSpell = keyValuePair.Key.Replace(" ", "");
-
-                        ResourceSet? resourceSet = Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentCulture, true, true);
-
-                        foreach (DictionaryEntry resource in resourceSet)
+                        foreach (KeyValuePair<string, Spell> keyValuePair in SpellNamePair)
                         {
-                            if (simpleSpell == resource.Key.ToString())
+                            if (keyValuePair.Key == TextBoxChooseSpell.Text)
                             {
-                                PictureSpell.Image = (Image?)resource.Value;
-                            }
-                            /*else
-                            {
-                                #region Debug Purposes Only
-                                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                                MessageBoxIcon boxIcon = MessageBoxIcon.Information;
-                                DialogResult result = MessageBox.Show($"Unable To Find Picture For {simpleSpell}\nDoes It Exist?", "", buttons, boxIcon);
-                                
-                                if (result == DialogResult.OK)
+                                School school = Spell.GetCurrentSpellSchool(keyValuePair.Value);
+                                string simpleSpell = keyValuePair.Key.Replace(" ", "");
+
+                                ResourceSet? resourceSet = Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentCulture, true, true);
+
+                                foreach (DictionaryEntry resource in resourceSet)
                                 {
-                                    break;
+                                    if (simpleSpell == resource.Key.ToString())
+                                    {
+                                        PictureSpell.Image = (Image?)resource.Value;
+                                    }
                                 }
-                                #endregion
-                            }*/
+                            }
                         }
+
+                        EnchantmentWindow enchantmentWindow = new(TextBoxChooseSpell.Text);
+
+                        Hide();
+
+                        enchantmentWindow.ShowDialog();
+
+                        Show();
+                    }
+                    else
+                    {
+                        DialogResult result = MessageBox.Show("Spell Does Not Exist", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        if (result == DialogResult.OK)
+                        {
+                            TextBoxChooseSpell.Focus();
+                        }
+                    }
+                }
+                else
+                {
+                    DialogResult result = MessageBox.Show("You Need To Enter A Spell Name", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
+                    if (result == DialogResult.OK)
+                    {
+                        TextBoxChooseSpell.Focus();
                     }
                 }
             }
         }
 
+        private bool IsValid(string text)
+        {
+            bool isValid = false;
+
+            foreach (Spell spell in spells)
+            {
+                if (spell.SpellName == text)
+                {
+                    isValid = true;
+                }
+                else
+                {
+                    isValid = false;
+                }
+            }
+
+            return isValid;
+        }
+
         private void TextBoxBoostPercent_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
             {
-                string text = TextBoxBoostPercent.Text;
+                if (!string.IsNullOrEmpty(TextBoxBoostPercent.Text))
+                {
+                    string text = TextBoxBoostPercent.Text;
 
-                text = "0." + text;
+                    text = "0." + text;
 
-                PercentBoost = double.Parse(text);
+                    PercentBoost = double.Parse(text);
+                }
 
                 TextBoxBoostPlus.Focus();
             }
@@ -93,11 +137,14 @@ namespace Wizard101DamageCalculator
 
         private void TextBoxBoostPlus_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
             {
-                string text = TextBoxBoostPlus.Text;
+                if (!string.IsNullOrEmpty(TextBoxBoostPlus.Text))
+                {
+                    string text = TextBoxBoostPlus.Text;
 
-                PlusBoost = int.Parse(text);
+                    PlusBoost = int.Parse(text);
+                }
 
                 TextBoxChooseSpell.Focus();
             }
