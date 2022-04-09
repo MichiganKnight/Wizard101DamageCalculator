@@ -9,6 +9,14 @@
         Ward
     }
 
+    public enum Type
+    {
+        Single,
+        MinMax,
+        FirstAndOverTime,
+        PerPip
+    }
+
     public enum School
     {
         Fire,
@@ -34,13 +42,14 @@
         public int OverTimeDamage { get; set; }
         public int NumberOfPips { get; set; }
         public SpellType SpellType { get; set; }
+        public Type Type { get; set; }
         public School School { get; set; }
 
         public static SingleTypeSpell[] GetAllSingleSpells()
         {
             SingleTypeSpell[] spells =
             {
-                new SingleTypeSpell("Naphtha Scarab", 100, SpellType.Attack, School.Fire),
+                new SingleTypeSpell("Naphtha Scarab", 100, SpellType.Attack, Type.Single, School.Fire),
             };
 
             return spells;
@@ -50,7 +59,7 @@
         {
             MinMaxTypeSpell[] spells =
             {
-                new MinMaxTypeSpell("Fire Cat", 80, 120, SpellType.Attack, School.Fire),
+                new MinMaxTypeSpell("Fire Cat", 80, 120, SpellType.Attack, Type.MinMax, School.Fire),
             };
 
             return spells;
@@ -60,7 +69,7 @@
         {
             FirstAndOverTimeTypeSpell[] spells =
             {
-                new FirstAndOverTimeTypeSpell("Fire Elf", 100, 210, SpellType.Attack, School.Fire),
+                new FirstAndOverTimeTypeSpell("Fire Elf", 100, 210, SpellType.Attack, Type.FirstAndOverTime, School.Fire),
             };
 
             return spells;
@@ -136,11 +145,12 @@
         /// </summary>
         /// <param name="spellName">Spell Name</param>
         /// <param name="damage">Spell Damage</param>
-        public SingleTypeSpell(string spellName, int damage, SpellType spellType, School school)
+        public SingleTypeSpell(string spellName, int damage, SpellType spellType, Type type, School school)
         {
             SpellName = spellName;
             Damage = damage;
             SpellType = spellType;
+            Type = type;
             School = school;
         }
     }
@@ -153,12 +163,13 @@
         /// <param name="spellName">Spell Name</param>
         /// <param name="minDamage">Spell Minimum Damage</param>
         /// <param name="maxDamage">Spell Maximum Damage</param>
-        public MinMaxTypeSpell(string spellName, int minDamage, int maxDamage, SpellType spellType, School school)
+        public MinMaxTypeSpell(string spellName, int minDamage, int maxDamage, SpellType spellType, Type type, School school)
         {
             SpellName = spellName;
             MinDamage = minDamage;
             MaxDamage = maxDamage;
             SpellType = spellType;
+            Type = type;
             School = school;
         }
     }
@@ -171,12 +182,13 @@
         /// <param name="spellName">Spell Name</param>
         /// <param name="firstDamage">Spell First Damage</param>
         /// <param name="overTimeDamage">Spell Over Time Damage</param>
-        public FirstAndOverTimeTypeSpell(string spellName, int firstDamage, int overTimeDamage, SpellType spellType, School school)
+        public FirstAndOverTimeTypeSpell(string spellName, int firstDamage, int overTimeDamage, SpellType spellType, Type type, School school)
         {
             SpellName = spellName;
             FirstDamage = firstDamage;
             OverTimeDamage = overTimeDamage;
             SpellType = spellType;
+            Type = type;
             School = school;
         }
     }
@@ -189,13 +201,14 @@
         /// <param name="spellName">Spell Name</param>
         /// <param name="damage">Spell Damage</param>
         /// <param name="numberOfPips">Number Of Pips</param>
-        public PerPipTypeSpell(string spellName, int damage, int numberOfPips, SpellType spellType, School school)
+        public PerPipTypeSpell(string spellName, int damage, int numberOfPips, SpellType spellType, Type type, School school)
         {
             SpellName = spellName;
             Damage = damage;
             NumberOfPips = numberOfPips;
             NumberOfPips = numberOfPips;
             SpellType = spellType;
+            Type = type;
             School = school;
         }
     }

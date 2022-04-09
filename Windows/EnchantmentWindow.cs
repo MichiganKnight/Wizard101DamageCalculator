@@ -9,10 +9,13 @@ namespace Wizard101DamageCalculator.Windows
     public partial class EnchantmentWindow : Form
     {
         public bool StrongApplied { get; set; }
+        public bool GiantApplied { get; set; }
+        public bool MonstrousApplied { get; set; }
+        public bool GargantuanApplied { get; set; }
+        public bool ColossalApplied { get; set; }
+        public bool EpicApplied { get; set; }
 
         private readonly Dictionary<string, Spell> SpellNamePair = new();
-
-        private Spell? currentSpell;
 
         private readonly string currentSpellName;
 
@@ -34,7 +37,7 @@ namespace Wizard101DamageCalculator.Windows
 
             foreach (KeyValuePair<string, Spell> keyValuePair in SpellNamePair)
             {
-                currentSpell = keyValuePair.Value;
+                Spell currentSpell = keyValuePair.Value;
 
                 if (keyValuePair.Key == currentSpellName)
                 {
@@ -70,26 +73,36 @@ namespace Wizard101DamageCalculator.Windows
 
         private void PictureGiant_Click(object sender, EventArgs e)
         {
+            GiantApplied = true;
+
             Close();
         }
 
         private void PictureMonstrous_Click(object sender, EventArgs e)
         {
+            MonstrousApplied = true;
+
             Close();
         }
 
         private void PictureGargantuan_Click(object sender, EventArgs e)
         {
+            GargantuanApplied = true;
+
             Close();
         }
 
         private void PictureColossal_Click(object sender, EventArgs e)
         {
+            ColossalApplied = true;
+
             Close();
         }
 
         private void PictureEpic_Click(object sender, EventArgs e)
         {
+            EpicApplied = true;
+
             Close();
         }
     }

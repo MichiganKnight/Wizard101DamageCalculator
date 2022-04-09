@@ -35,6 +35,8 @@
             this.LabelInfo3 = new System.Windows.Forms.Label();
             this.TextBoxBoostPlus = new System.Windows.Forms.TextBox();
             this.TextBoxBoostPercent = new System.Windows.Forms.TextBox();
+            this.LabelMinimumOrSingleDamage = new System.Windows.Forms.Label();
+            this.labelMaximumDamage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PictureSpell)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,6 +50,7 @@
             this.LabelInfo2.Size = new System.Drawing.Size(198, 25);
             this.LabelInfo2.TabIndex = 0;
             this.LabelInfo2.Text = "Enter Spell Name:";
+            this.LabelInfo2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TextBoxChooseSpell
             // 
@@ -82,6 +85,7 @@
             this.LabelInfo1.Size = new System.Drawing.Size(250, 25);
             this.LabelInfo1.TabIndex = 3;
             this.LabelInfo1.Text = "Enter Player Boost (+):";
+            this.LabelInfo1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LabelInfo3
             // 
@@ -93,6 +97,7 @@
             this.LabelInfo3.Size = new System.Drawing.Size(256, 25);
             this.LabelInfo3.TabIndex = 4;
             this.LabelInfo3.Text = "Enter Player Boost (%):";
+            this.LabelInfo3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TextBoxBoostPlus
             // 
@@ -116,12 +121,34 @@
             this.TextBoxBoostPercent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TextBoxBoostPercent.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxBoostPercent_KeyDown);
             // 
+            // LabelMinimumOrSingleDamage
+            // 
+            this.LabelMinimumOrSingleDamage.AutoSize = true;
+            this.LabelMinimumOrSingleDamage.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LabelMinimumOrSingleDamage.Location = new System.Drawing.Point(474, 343);
+            this.LabelMinimumOrSingleDamage.Name = "LabelMinimumOrSingleDamage";
+            this.LabelMinimumOrSingleDamage.Size = new System.Drawing.Size(0, 36);
+            this.LabelMinimumOrSingleDamage.TabIndex = 5;
+            this.LabelMinimumOrSingleDamage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelMaximumDamage
+            // 
+            this.labelMaximumDamage.AutoSize = true;
+            this.labelMaximumDamage.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelMaximumDamage.Location = new System.Drawing.Point(470, 379);
+            this.labelMaximumDamage.Name = "labelMaximumDamage";
+            this.labelMaximumDamage.Size = new System.Drawing.Size(0, 36);
+            this.labelMaximumDamage.TabIndex = 6;
+            this.labelMaximumDamage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1262, 673);
             this.ControlBox = false;
+            this.Controls.Add(this.labelMaximumDamage);
+            this.Controls.Add(this.LabelMinimumOrSingleDamage);
             this.Controls.Add(this.TextBoxBoostPercent);
             this.Controls.Add(this.TextBoxBoostPlus);
             this.Controls.Add(this.LabelInfo3);
@@ -151,5 +178,7 @@
         private Label LabelInfo3;
         private TextBox TextBoxBoostPlus;
         private TextBox TextBoxBoostPercent;
+        private Label LabelMinimumOrSingleDamage;
+        private Label labelMaximumDamage;
     }
 }

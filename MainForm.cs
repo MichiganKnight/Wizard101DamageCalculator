@@ -15,6 +15,10 @@ namespace Wizard101DamageCalculator
         private double PercentBoost;
         private int PlusBoost;
 
+        public int SingleDamage;
+        public int MinDamage;
+        public int MaxDamage;
+
         public MainForm()
         {
             InitializeComponent();
@@ -45,6 +49,7 @@ namespace Wizard101DamageCalculator
         private void TextboxChooseSpell_KeyDown(object sender, KeyEventArgs e)
         {
             string simpleSpell = "";
+            Spell? currentSpell = null;
 
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
             {
@@ -56,6 +61,7 @@ namespace Wizard101DamageCalculator
                         {
                             if (keyValuePair.Key == TextBoxChooseSpell.Text)
                             {
+                                currentSpell = keyValuePair.Value;
                                 School school = Spell.GetCurrentSpellSchool(keyValuePair.Value);
                                 simpleSpell = keyValuePair.Key.Replace(" ", "");
 
@@ -68,6 +74,23 @@ namespace Wizard101DamageCalculator
                                         PictureSpell.Image = (Image?)resource.Value;
                                     }
                                 }
+
+                                switch (keyValuePair.Value.Type)
+                                {
+                                    case Type.Single:
+                                        SingleDamage = keyValuePair.Value.Damage;
+                                        LabelMinimumOrSingleDamage.Text = $"Damage: {SingleDamage}";
+                                        break;
+                                    case Type.MinMax:
+                                        MinDamage = keyValuePair.Value.MinDamage;
+                                        MaxDamage = keyValuePair.Value.MaxDamage;
+                                        LabelMinimumOrSingleDamage.Text = $"Minimum Damage: {MinDamage}";
+                                        labelMaximumDamage.Text = $"Maximum Damage: {MaxDamage}";
+                                        break;
+                                    default:
+                                        break;
+                                }
+
                             }
                         }
 
@@ -83,8 +106,6 @@ namespace Wizard101DamageCalculator
 
                         if (strongApplied)
                         {
-                            simpleSpell += "Strong";
-
                             PictureSpell.Image = null;
 
                             ResourceSet? resourceSet = Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentCulture, true, true);
@@ -95,6 +116,19 @@ namespace Wizard101DamageCalculator
                                 {
                                     PictureSpell.Image = (Image?)resource.Value;
                                 }
+                            }
+
+                            switch (currentSpell.Type)
+                            {
+                                case Type.Single:
+                                    currentSpell.Damage = currentSpell.Damage + 100;
+                                    break;
+                                case Type.MinMax:
+                                    currentSpell.MinDamage += 100;
+                                    currentSpell.MaxDamage += 100;
+                                    break;
+                                default:
+                                    break;
                             }
                         }
                     }
